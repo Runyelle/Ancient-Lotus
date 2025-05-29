@@ -1,16 +1,16 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.core.mail import send_mail
 from django.shortcuts import render
+from django.core.mail import send_mail
 from django.conf import settings
 
 def contact_view(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        email = request.POST['email']
-        subject = request.POST['subject']
-        message = request.POST['message']
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
 
         full_message = f"From: {name} <{email}>\n\n{message}"
 
@@ -22,6 +22,6 @@ def contact_view(request):
             fail_silently=False,
         )
 
-        return render(request, 'contact_success.html')  # Optional thank-you page
+        return render(request, 'index.html', {'success': True})
 
-    return render(request, 'contact_form.html')
+    return render(request, 'index.html')
