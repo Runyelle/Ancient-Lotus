@@ -12,10 +12,10 @@ def contact_view(request):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
 
-        full_message = f"From: {name} <{email}>\n\n{message}"
+        full_message = f"From: {name} <{email}>\n\n Subject: {subject} \n\n{message}"
 
         send_mail(
-            subject,
+            'YOU GOT A MESSAGE!! FROM ANCIENT DASH LOTUS DOT COM',
             full_message,
             settings.DEFAULT_FROM_EMAIL,
             [settings.CONTACT_EMAIL],
