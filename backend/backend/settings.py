@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-90i)#y1tn+b8^3i!#d^&65e7_synrxa%ad)m_la)aejytz2#6%'
+SECRET_KEY = 'django-insecure-7h^c%x&yzo1#+(34sume7%peyfr4p-rjnjf$8d4^69s7eeci=4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'contact',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +54,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR.parent / 'frontend'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,38 +114,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATICFILES_DIRS = [
-    BASE_DIR.parent / 'frontend' / 'assets',  # 👈 Your real CSS/JS path
-]
-
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR.parent / 'frontend' / 'assets',
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Email Setup
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'mail.privateemail.com'  # or your provider
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'rosa.kissling@ancient-lotus.com'
-EMAIL_HOST_PASSWORD = 'test123'
-
-DEFAULT_FROM_EMAIL = 'ancientcouriers@ancient-lotus.com'
-CONTACT_EMAIL = 'losoyajesus2@gmail.com'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.parent / 'frontend'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
+EMAIL_HOST_USER = 'your_email@gmail.com'
+EMAIL_HOST_PASSWORD = 'your_app_password'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+CONTACT_EMAIL = 'destination_email@example.com'
